@@ -1,0 +1,84 @@
+@font-face {
+    font-family: shopping;
+    src: url(Happy_Monkey/HappyMonkey-Regular.ttf);
+}
+@font-face {
+    font-family: sen;
+    src: url(Sen/Sen-VariableFont_wght.ttf);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'shopping', sans-serif;
+    /* background-color: #F9FAFB; */
+    background-color: #4368AF;
+    color: #432000; 
+    user-select: none;
+}
+
+.container {
+   display: flex;
+   flex-direction: column;
+   max-width: 320px;
+   margin: 30px auto;
+}
+
+img {
+    width: 240px;
+    margin: 0 auto;
+}
+
+input {
+    color: #1C2C56;
+    background-color: #B0D2D8;
+    border: 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'sen', sans-serif;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+button {
+
+    color: #FDFDFD;
+    /* background-color: #c53525; */
+    background-color: #ED130D;
+    border: 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'fa', sans-serif;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #e15c4c;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+}
+
+ul li { 
+    font-size: 20px; 
+    background-color: #FFFDF8;
+    padding: 16px;
+    border-radius: 6px;
+    flex-grow: 1;   /*con flex grow relleno los expacios al final*/
+    text-align: center;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
+}
+
+li:hover {
+    cursor: pointer;
+    background-color: #FFECC7;
+}
