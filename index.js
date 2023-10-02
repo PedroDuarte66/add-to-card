@@ -16,6 +16,30 @@ const inputFieldEl = document.getElementById("input-field")
 const addButtonEl = document.getElementById("add-button")
 const shoppingListEl = document.getElementById('shopping-list')
 
+
+const awaitVoices = new Promise((resolve) => {
+    speechSynthesis.onvoiceschanged = resolve;
+  });
+  
+  function filterVoicesByLanguage(lang) {
+    const voices = speechSynthesis.getVoices();
+    return voices.filter((voice) => voice.lang.startsWith(lang));
+  }
+  
+  
+  async function speakItem( myArray) {
+    await awaitVoices;
+    const ukVoices = filterVoicesByLanguage("en-GB");
+    if (ukVoices.length > 0) {
+      const selectedVoice = ukVoices[0];
+      const speech = new SpeechSynthesisUtterance(myArray);
+      speech.voice = selectedVoice;
+      window.speechSynthesis.speak(speech);
+    } else {
+      console.log("No UK voice found.");
+    }
+  }
+
 inputFieldEl.addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
       addButtonEl.click()
@@ -25,10 +49,9 @@ inputFieldEl.addEventListener("keyup", function(event) {
 addButtonEl.addEventListener("click", function() {
     let inputValue = inputFieldEl.value
     push(shoppingListInDB, inputValue)
- 
     clearField(inputFieldEl)
 
-    // appendItemToShoppingListEL(inputValue)  we cancel thisone because it repeats itself
+    speakItem(inputValue)
 })
 
 
@@ -89,3 +112,35 @@ function appendItemToShoppingListEL (item) {
 // const index = arr.findIndex((element) => element.includes(elementToFind));
 
 // console.log(index); // Output: 3
+
+
+//some test about speach
+
+    // Text-to-speech functionality
+    // const voices = window.speechSynthesis.getVoices();
+    //  console.log(voices);
+
+    //  const unitedKingdomVoices = voices.filter(voice => 
+    //     voice.name.includes("United Kingdom") || voice.name.includes("UK"));
+    //  console.log(unitedKingdomVoices);
+     
+    
+    // const speech = new SpeechSynthesisUtterance(inputValue);
+    // window.speechSynthesis.speak(speech);
+
+     // Text-to-speech functionality
+    // const speech = new SpeechSynthesisUtterance(inputValue);
+    // const voices = window.speechSynthesis.getVoices();
+    // const maleVoice = voices.find(voice => voice.name === "Microsoft David - English (United States)");
+    // const femaleVoice = voices.find(voice => voice.name === "Google UK English Female");
+    
+    //  if (maleVoice && femaleVoice) {
+    //    // Randomly select a male or female voice
+    //    const selectedVoice = Math.random() < 0.5 ? maleVoice : femaleVoice;
+    //    speech.voice = selectedVoice;
+    //    window.speechSynthesis.speak(speech);
+    //  } else {
+    //    console.log("Male and/or female voice not found.");
+    //  }
+
+    // appendItemToShoppingListEL(inputValue)  we cancel thisone because it repeats itself
